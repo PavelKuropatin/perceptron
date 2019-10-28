@@ -3,6 +3,8 @@ from PIL import Image
 
 
 def by_avg_sum(rgb):
+    if isinstance(rgb, tuple):
+        rgb = sum(rgb) // 3
     return int(rgb < 128)
 
 

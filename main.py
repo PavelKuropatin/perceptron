@@ -1,14 +1,15 @@
 import os
 import sys
 
+import numpy as _
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QFileDialog, QMessageBox
 
-from ml.ml_utils.data_utils import read_matrix_data, read_csv
+from ml.ml_utils.data_utils import read_matrix_data, read_csv, write_matrix_data
 from ml.ml_utils.image_utils import to_bit_pixels
 from ml.perceptron import Perceptron
-from utils.constants import PWD, IMAGE, A_FILE, LAMBDAS_0_FILE, CLASSES_FILE
+from utils.constants import PWD, IMAGE, A_FILE, CLASSES_FILE, LAMBDAS_FILE
 from utils.qt.bitmap_table_view import BitmapTableView
 
 
@@ -24,11 +25,13 @@ class MainWindow(QMainWindow):
 
         self.__init_data()
         self.__init_ui()
+        self.learn_button.setEnabled(False)
+        # self.learn_perceptron()
         self.show()
 
     def __init_data(self):
         a = read_matrix_data(A_FILE)
-        lambdas = read_matrix_data(LAMBDAS_0_FILE)
+        lambdas = read_matrix_data(LAMBDAS_FILE)
         self.__perceptron = Perceptron(a, lambdas)
         self.__classes = {int(index): key for key, index in read_csv(CLASSES_FILE)}
         self.__classes_r = {key: int(index) for key, index in read_csv(CLASSES_FILE)}
@@ -52,17 +55,16 @@ class MainWindow(QMainWindow):
         self.image_label.setPixmap(image_pixmap)
 
         self.__image_bitmap = to_bit_pixels(image)
-        self.image_table.setModel(BitmapTableView(self.__image_bitmap))
-        self.__perceptron.learning(self.__image_bitmap, 1)
-        self.__refresh_out()
+        # self.image_table.setModel(BitmapTableView(self.__image_bitmap))
+        out_class = self.__perceptron.recognizing(self.__image_bitmap)
+        print(self.__perceptron.sums)
+        QMessageBox.information(self, "Result", f"Class : {self.__classes[out_class]}", QMessageBox.Yes)
 
     def __open_file(self):
-        return os.path.join(IMAGE, "a/1.png")
         return QFileDialog.getOpenFileName(self, "Choose image", IMAGE, "*.*")[0]
 
     def learn_perceptron(self):
-        self.learn_button.setEnabled(False)
-        classes = os.listdir(IMAGE)
+        classes = [path for path in os.listdir(IMAGE) if os.path.isdir(os.path.join(IMAGE, path))]
         images_to_load = []
         for _class in classes:
             class_images_dir = os.path.join(IMAGE, _class)
@@ -70,8 +72,12 @@ class MainWindow(QMainWindow):
                 (os.path.join(class_images_dir, image), self.__classes_r[_class.upper()])
                 for image in os.listdir(class_images_dir)
             ]
-        print(images_to_load)
+        _.random.shuffle(images_to_load)
+        for image, proper_class in images_to_load:
+            print(proper_class, image)
+            self.__perceptron.learning(to_bit_pixels(image), proper_class)
         self.__refresh_out()
+        write_matrix_data(self.__perceptron.lambdas, LAMBDAS_FILE)
 
 
 if __name__ == "__main__":

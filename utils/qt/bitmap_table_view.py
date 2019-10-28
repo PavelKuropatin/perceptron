@@ -8,6 +8,7 @@ class BitmapTableView(QAbstractTableModel):
         super(BitmapTableView, self).__init__()
 
     def data(self, index, role):
+        Qt.Ro
         if role == Qt.DisplayRole:
             return str(self.__bitmap[index.row()][index.column()])
 
