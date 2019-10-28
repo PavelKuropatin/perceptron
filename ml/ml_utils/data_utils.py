@@ -1,9 +1,10 @@
+import csv
 import random
 
 import numpy as _
 import pandas
 
-LAMBDAS_VALUE = [-1, 0, 1]
+from utils.constants import LAMBDAS_VALUE
 
 
 def generate_a(width=800, height=10000):
@@ -68,11 +69,11 @@ def check_a(a):
     return True
 
 
-def write_data(data, filename):
+def write_matrix_data(data, filename):
     pandas.DataFrame(data).to_csv(filename)
 
 
-def read_data(filename):
+def read_matrix_data(filename):
     df = pandas.read_csv(filename)
     return _.delete(df.to_numpy(), 0, 1)
 
@@ -82,3 +83,8 @@ def generate_lambdas(size, amount):
         [random.choice(LAMBDAS_VALUE) for i in range(size)]
         for _ in range(amount)
     ]
+
+
+def read_csv(filename):
+    with open(filename, newline='') as f:
+        return [_ for _ in csv.reader(f, delimiter=',')]

@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>822</height>
+       <height>858</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+      <string>Perceptron</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabs">
@@ -20,15 +20,206 @@
       <x>10</x>
       <y>10</y>
       <width>781</width>
-      <height>771</height>
+         <height>811</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
+       <widget class="QWidget" name="main_tab">
+           <attribute name="title">
+               <string>Main</string>
+           </attribute>
+           <widget class="QTableView" name="a_table">
+               <property name="geometry">
+                   <rect>
+                       <x>30</x>
+                       <y>30</y>
+                       <width>731</width>
+                       <height>551</height>
+                   </rect>
+               </property>
+               <attribute name="horizontalHeaderVisible">
+                   <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                   <number>20</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                   <number>20</number>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                   <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                   <number>15</number>
+               </attribute>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                   <number>15</number>
+               </attribute>
+           </widget>
+           <widget class="QTableView" name="out_table">
+               <property name="geometry">
+                   <rect>
+                       <x>30</x>
+                       <y>590</y>
+                       <width>731</width>
+                       <height>151</height>
+                   </rect>
+               </property>
+               <attribute name="horizontalHeaderVisible">
+                   <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                   <number>30</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                   <number>30</number>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                   <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                   <number>20</number>
+               </attribute>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                   <number>20</number>
+               </attribute>
+           </widget>
+           <widget class="QLabel" name="label">
+               <property name="geometry">
+                   <rect>
+                       <x>380</x>
+                       <y>10</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>A</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_2">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>270</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>X</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="sum_label">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>750</y>
+                       <width>621</width>
+                       <height>16</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string/>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_4">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>590</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>Y</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_5">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>610</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>L1</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_6">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>630</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>L2</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_7">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>650</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>L3</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_8">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>670</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>L4</string>
+               </property>
+           </widget>
+           <widget class="QLabel" name="label_9">
+               <property name="geometry">
+                   <rect>
+                       <x>10</x>
+                       <y>690</y>
+                       <width>47</width>
+                       <height>13</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>L5</string>
+               </property>
+           </widget>
+           <widget class="QPushButton" name="learn_button">
+               <property name="geometry">
+                   <rect>
+                       <x>690</x>
+                       <y>750</y>
+                       <width>75</width>
+                       <height>23</height>
+                   </rect>
+               </property>
+               <property name="text">
+                   <string>Learn</string>
+               </property>
+           </widget>
+       </widget>
     <widget class="QWidget" name="image_tab">
      <attribute name="title">
-      <string>Tab 1</string>
+         <string>Recognition</string>
      </attribute>
      <widget class="QPushButton" name="load_image_button">
       <property name="geometry">
@@ -85,11 +276,6 @@
       </attribute>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -122,8 +308,25 @@
     </hint>
    </hints>
   </connection>
+     <connection>
+         <sender>learn_button</sender>
+         <signal>clicked()</signal>
+         <receiver>MainWindow</receiver>
+         <slot>learn_perceptron()</slot>
+         <hints>
+             <hint type="sourcelabel">
+                 <x>748</x>
+                 <y>811</y>
+             </hint>
+             <hint type="destinationlabel">
+                 <x>637</x>
+                 <y>29</y>
+             </hint>
+         </hints>
+     </connection>
  </connections>
  <slots>
   <slot>load_image()</slot>
+     <slot>learn_perceptron()</slot>
  </slots>
 </ui>
