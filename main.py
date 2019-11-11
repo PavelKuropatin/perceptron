@@ -27,11 +27,13 @@ class MainWindow(QMainWindow):
         self.__init_data()
         self.__init_ui()
         self.learn_button.setEnabled(False)
-
+        # self.learn_perceptron()
+        # sys.exit(0)
         self.show()
 
     def __init_data(self):
         a = read_matrix_data(A_FILE)
+        # lambdas = read_matrix_data(LAMBDAS_0_FILE)
         lambdas = read_matrix_data(LAMBDAS_FILE)
         self.__perceptron = Perceptron(a, lambdas)
         self.__classes = {int(index): key for key, index in read_csv(CLASSES_FILE)}
@@ -75,6 +77,7 @@ class MainWindow(QMainWindow):
             ]
         _.random.shuffle(images_to_load)
         for image, proper_class in images_to_load:
+            print(image, proper_class)
             self.__perceptron.learning(to_bit_pixels(image), proper_class)
         self.__refresh_out()
         write_matrix_data(self.__perceptron.lambdas, LAMBDAS_FILE)

@@ -59,6 +59,10 @@ def __generate_invalid(width, height):
 def check_a(a):
     height, width = len(a), len(a[0])
     for row in a:
+        if len([i for i in row if i == 1]) != 1:
+            print("one count in row")
+            return False
+    for row in a:
         if not (-1 in row and 1 in row):
             return False
 
@@ -88,3 +92,9 @@ def generate_lambdas(size, amount):
 def read_csv(filename):
     with open(filename, newline='') as f:
         return [_ for _ in csv.reader(f, delimiter=',')]
+
+
+if __name__ == '__main__':
+    a = read_matrix_data("C:/Users/pavel/PycharmProjects/perceptron/assets/csv/a.csv")
+    a = a.transpose()
+    print(check_a(a))
