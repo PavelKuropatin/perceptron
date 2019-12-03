@@ -73,6 +73,7 @@ class MainWindow(QMainWindow):
                                           QMessageBox.Yes | QMessageBox.No)
             self.__answers.append(1 if answer == QMessageBox.Yes else 0)
             percent = sum(self.__answers) / len(self.__answers) * 100
+            self.percent_label.setText(str(int(percent)))
             print(percent)
 
 
