@@ -6,91 +6,155 @@
    <rect>
     <x>0</x>
     <y>0</y>
-       <width>528</width>
-       <height>304</height>
+       <width>328</width>
+       <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
       <string>Perceptron</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-      <widget class="QPushButton" name="learn_button">
+      <widget class="QTabWidget" name="tabs_widget">
           <property name="geometry">
               <rect>
-                  <x>410</x>
-                  <y>30</y>
-                  <width>100</width>
-                  <height>40</height>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>321</width>
+                  <height>391</height>
               </rect>
           </property>
-          <property name="text">
-              <string>Learn</string>
+          <property name="currentIndex">
+              <number>0</number>
           </property>
+          <widget class="QWidget" name="perceptrom_tab">
+              <attribute name="title">
+                  <string>Perceptron</string>
+              </attribute>
+              <widget class="QPushButton" name="load_image_button">
+                  <property name="geometry">
+                      <rect>
+                          <x>100</x>
+                          <y>30</y>
+                          <width>100</width>
+                          <height>50</height>
+                      </rect>
+                  </property>
+                  <property name="text">
+                      <string>Load image</string>
+                  </property>
+              </widget>
+              <widget class="QLabel" name="percent_label">
+                  <property name="geometry">
+                      <rect>
+                          <x>120</x>
+                          <y>240</y>
+                          <width>71</width>
+                          <height>21</height>
+                      </rect>
+                  </property>
+                  <property name="text">
+                      <string>?</string>
+                  </property>
+              </widget>
+              <widget class="QPushButton" name="recognize_button">
+                  <property name="geometry">
+                      <rect>
+                          <x>170</x>
+                          <y>280</y>
+                          <width>100</width>
+                          <height>50</height>
+                      </rect>
+                  </property>
+                  <property name="text">
+                      <string>Recognize</string>
+                  </property>
+              </widget>
+              <widget class="QPushButton" name="learn_button">
+                  <property name="geometry">
+                      <rect>
+                          <x>40</x>
+                          <y>280</y>
+                          <width>100</width>
+                          <height>51</height>
+                      </rect>
+                  </property>
+                  <property name="text">
+                      <string>Learn</string>
+                  </property>
+              </widget>
+              <widget class="QGroupBox" name="image_group_box">
+                  <property name="geometry">
+                      <rect>
+                          <x>100</x>
+                          <y>110</y>
+                          <width>100</width>
+                          <height>100</height>
+                      </rect>
+                  </property>
+                  <property name="title">
+                      <string/>
+                  </property>
+                  <widget class="QLabel" name="image_label">
+                      <property name="geometry">
+                          <rect>
+                              <x>0</x>
+                              <y>0</y>
+                              <width>100</width>
+                              <height>100</height>
+                          </rect>
+                      </property>
+                      <property name="text">
+                          <string/>
+                      </property>
       </widget>
-      <widget class="QPushButton" name="load_image_button">
-          <property name="geometry">
-              <rect>
-                  <x>30</x>
-                  <y>30</y>
-                  <width>100</width>
-                  <height>50</height>
-              </rect>
-          </property>
-          <property name="text">
-              <string>Load image</string>
-          </property>
-      </widget>
-      <widget class="QLabel" name="image_label">
-          <property name="geometry">
-              <rect>
-                  <x>190</x>
-                  <y>80</y>
-                  <width>111</width>
-                  <height>101</height>
-              </rect>
-          </property>
-          <property name="text">
-              <string/>
-          </property>
-      </widget>
-      <widget class="QPushButton" name="recognize_button">
-          <property name="geometry">
-              <rect>
-                  <x>410</x>
-                  <y>110</y>
-                  <width>100</width>
-                  <height>50</height>
-              </rect>
-          </property>
-          <property name="text">
-              <string>Recognize</string>
-          </property>
-      </widget>
-      <widget class="QLabel" name="percent_label">
-          <property name="geometry">
-              <rect>
-                  <x>204</x>
-                  <y>20</y>
-                  <width>71</width>
-                  <height>21</height>
-              </rect>
-          </property>
-          <property name="text">
-              <string>?</string>
-          </property>
+              </widget>
+          </widget>
+          <widget class="QWidget" name="a_tab">
+              <attribute name="title">
+                  <string>A</string>
+              </attribute>
+              <widget class="QGroupBox" name="a_image_group_box">
+                  <property name="geometry">
+                      <rect>
+                          <x>10</x>
+                          <y>60</y>
+                          <width>300</width>
+                          <height>300</height>
+                      </rect>
+                  </property>
+                  <property name="title">
+                      <string/>
+                  </property>
+                  <widget class="QLabel" name="a_image_label">
+                      <property name="geometry">
+                          <rect>
+                              <x>0</x>
+                              <y>0</y>
+                              <width>300</width>
+                              <height>300</height>
+                          </rect>
+                      </property>
+                      <property name="text">
+                          <string/>
+                      </property>
+                  </widget>
+              </widget>
+              <widget class="QLineEdit" name="a_index_line_edit">
+                  <property name="geometry">
+                      <rect>
+                          <x>10</x>
+                          <y>10</y>
+                          <width>113</width>
+                          <height>41</height>
+                      </rect>
+                  </property>
+                  <property name="text">
+                      <string>0</string>
+                  </property>
+              </widget>
+          </widget>
       </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-        <width>528</width>
-        <height>18</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections>
@@ -101,8 +165,8 @@
    <slot>load_image()</slot>
    <hints>
     <hint type="sourcelabel">
-        <x>85</x>
-        <y>73</y>
+        <x>77</x>
+        <y>272</y>
     </hint>
     <hint type="destinationlabel">
      <x>287</x>
@@ -117,8 +181,8 @@
          <slot>learn_perceptron()</slot>
          <hints>
              <hint type="sourcelabel">
-                 <x>468</x>
-                 <y>73</y>
+                 <x>470</x>
+                 <y>208</y>
              </hint>
              <hint type="destinationlabel">
                  <x>527</x>
@@ -133,12 +197,28 @@
          <slot>recognize_image()</slot>
          <hints>
              <hint type="sourcelabel">
-                 <x>454</x>
-                 <y>143</y>
+                 <x>446</x>
+                 <y>442</y>
              </hint>
              <hint type="destinationlabel">
                  <x>413</x>
                  <y>232</y>
+             </hint>
+         </hints>
+     </connection>
+     <connection>
+         <sender>a_index_line_edit</sender>
+         <signal>returnPressed()</signal>
+         <receiver>MainWindow</receiver>
+         <slot>build_a_image()</slot>
+         <hints>
+             <hint type="sourcelabel">
+                 <x>89</x>
+                 <y>38</y>
+             </hint>
+             <hint type="destinationlabel">
+                 <x>168</x>
+                 <y>-10</y>
              </hint>
          </hints>
      </connection>
@@ -147,5 +227,6 @@
   <slot>load_image()</slot>
      <slot>learn_perceptron()</slot>
      <slot>recognize_image()</slot>
+     <slot>build_a_image()</slot>
  </slots>
 </ui>

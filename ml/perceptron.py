@@ -11,7 +11,7 @@ class Perceptron:
 
     @property
     def a(self):
-        return self.__a.transpose()
+        return self.__a
 
     @property
     def out_data(self):

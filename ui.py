@@ -1,15 +1,16 @@
 import os
 import sys
 
-import numpy as _
+import numpy as np
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 
 from ml.ml_utils.data_utils import read_matrix_data, read_csv, write_matrix_data
-from ml.ml_utils.image_utils import to_bit_pixels
+from ml.ml_utils.image_utils import to_bit_pixels, save_as_image
 from ml.perceptron import Perceptron
-from utils.constants import PWD, IMAGE, A_FILE, CLASSES_FILE, LAMBDAS_FILE, LAMBDAS_0_FILE
+from utils.constants import PWD, IMAGE, A_FILE, CLASSES_FILE, LAMBDAS_FILE, LAMBDAS_0_FILE, A_SIZE, \
+    VALUE_COLORS_MAPPING, A_IMAGE
 
 
 class PerceptronApp(QMainWindow):
@@ -66,7 +67,7 @@ class PerceptronApp(QMainWindow):
                 (os.path.join(class_images_dir, image), self.__classes_r[_class.upper()])
                 for image in os.listdir(class_images_dir)
             ]
-        _.random.shuffle(images_to_load)
+        np.random.shuffle(images_to_load)
         i = 1
         for image, proper_class in images_to_load:
             print(i, image, proper_class)
@@ -80,9 +81,18 @@ class PerceptronApp(QMainWindow):
             answer = QMessageBox.question(self, "Result", f"Class : {self.__classes[out_class]}",
                                           QMessageBox.Yes | QMessageBox.No)
             self.__answers.append(1 if answer == QMessageBox.Yes else 0)
-            percent = sum(self.__answers) / len(self.__answers) * 100
-            self.percent_label.setText(str(int(percent)))
-            print(percent)
+            percent = int(sum(self.__answers) / len(self.__answers) * 100)
+            self.percent_label.setText(f"{percent} %")
+
+    def build_a_image(self):
+        i = int(self.a_index_line_edit.text())
+        if i >= A_SIZE:
+            return
+        values = np.asarray(np.split(self.__perceptron.a[i], 100))
+
+        save_as_image(values, A_IMAGE, VALUE_COLORS_MAPPING, 3)
+
+        self.a_image_label.setPixmap(QPixmap(A_IMAGE))
 
 
 if __name__ == "__main__":
