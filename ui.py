@@ -6,11 +6,11 @@ from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 
-from ml.ml_utils.data_utils import read_matrix_data, read_csv, write_matrix_data
-from ml.ml_utils.image_utils import to_bit_pixels, save_as_image
 from ml.perceptron import Perceptron
 from utils.constants import PWD, IMAGE, A_FILE, CLASSES_FILE, LAMBDAS_FILE, LAMBDAS_0_FILE, A_SIZE, \
     VALUE_COLORS_MAPPING, A_IMAGE
+from utils.data_utils import read_matrix_data, read_csv, write_matrix_data
+from utils.image_utils import to_bit_pixels, save_as_image
 
 
 class PerceptronApp(QMainWindow):
@@ -48,7 +48,6 @@ class PerceptronApp(QMainWindow):
     def load_image(self):
         image = self.__open_file()
         if not image:
-            print("no selected image")
             return
 
         image_pixmap = QPixmap(os.path.join(PWD, image))
@@ -77,7 +76,7 @@ class PerceptronApp(QMainWindow):
     def recognize_image(self):
         if self.__image_bitmap is not None:
             out_class = self.__perceptron.recognizing(self.__image_bitmap)
-            print(self.__perceptron.sums)
+
             answer = QMessageBox.question(self, "Result", f"Class : {self.__classes[out_class]}",
                                           QMessageBox.Yes | QMessageBox.No)
             self.__answers.append(1 if answer == QMessageBox.Yes else 0)
@@ -88,17 +87,15 @@ class PerceptronApp(QMainWindow):
         i = int(self.a_index_line_edit.text())
         if i >= A_SIZE:
             return
+
         values = np.asarray(np.split(self.__perceptron.a[i], 100))
-
         save_as_image(values, A_IMAGE, VALUE_COLORS_MAPPING, 3)
-
         self.a_image_label.setPixmap(QPixmap(A_IMAGE))
 
 
 if __name__ == "__main__":
     args = sys.argv[1:]
     mode = args[0] if len(args) != 0 else "ui"
-    print(mode)
     app = QApplication(sys.argv)
     ex = PerceptronApp("window.ui", mode)
     sys.exit(app.exec_())
